@@ -5,42 +5,32 @@
  'use strict';
 
  var React = require('react-native');
+ var SearchPage = require('./SearchPage');
 // var MOCKED_MOVIES_DATA = [
 //   {title: 'Title', year: '2015', posters: {thumbnail: 'http://i.imgur.com/UePbdph.jpg'}},
 // ];
 var {
   AppRegistry,
-  Image,
-  ListView,
   StyleSheet,
-  Text,
-  View,
 } = React;
 
 var SearchPage = require('./SearchPage');
 
-var styles = React.StyleSheet.create({
-  text: {
-    color: 'black',
-    backgroundColor: 'white',
-    fontSize: 30,
-    margin: 80
-  },
+var styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
   }
 });
 
-class ColumbiaServices extends React.Component {
-  render() {
+var ColumbiaServiesApp = React.createClass({
+  render: function() {
     return (
       <React.NavigatorIOS
         style={styles.container}
         initialRoute={{
-          title: 'Columbia Services',
+          title: 'Property Finder',
           component: SearchPage,
         }}/>
     );
   }
-}
-  React.AppRegistry.registerComponent('ColumbiaServices', function(){return ColumbiaServices});
+});
