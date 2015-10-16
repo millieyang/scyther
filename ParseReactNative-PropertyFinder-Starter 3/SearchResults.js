@@ -42,8 +42,9 @@ var styles = StyleSheet.create({
 var SearchResults = React.createClass({
 
   getInitialState: function() {
-    var dataSource = new ListView.DataSource(
-      {rowHasChanged: (r1, r2) => r1.guid !== r2.guid});
+    var dataSource = new ListView.DataSource({
+      rowHasChanged: (r1, r2) => r1.id !== r2.id
+    });
     return {
       dataSource: dataSource.cloneWithRows(this.props.listings)
     };
@@ -51,7 +52,7 @@ var SearchResults = React.createClass({
 
   rowPressed: function(propertyGuid) {
     var property = this.props.listings
-      .filter(prop => prop.guid === propertyGuid)[0];
+      .filter(prop => prop.id === propertyGuid)[0];
 
     this.props.navigator.push({
       title: "Property",
@@ -61,16 +62,16 @@ var SearchResults = React.createClass({
   },
 
   renderRow: function(rowData, sectionID, rowID) {
-    var price = rowData.price_formatted.split(' ')[0];
+    // var price = rowData.price_formatted.split(' ')[0];
 
     return (
-      <TouchableHighlight onPress={() => this.rowPressed(rowData.guid)}
+      <TouchableHighlight onPress={() => this.rowPressed(rowData.id)}
           underlayColor='#dddddd'>
         <View>
           <View style={styles.rowContainer}>
-            <Image style={styles.thumb} source={{ uri: rowData.img_url }} />
+            <Image style={styles.thumb} source={{ uri: rowData.img_url.url() }} />
             <View  style={styles.textContainer}>
-              <Text style={styles.price}>£{price}</Text>
+              <Text style={styles.price}>${rowData.price}</Text>
               <Text style={styles.title}
                     numberOfLines={1}>{rowData.title}</Text>
             </View>

@@ -50,14 +50,12 @@ var PropertyView = React.createClass({
         ? 'bathrooms' : 'bathroom');
     }
 
-    var price = property.price_formatted.split(' ')[0];
-
     return (
       <View style={styles.container}>
         <Image style={styles.image}
-            source={{uri: property.img_url}} />
+            source={{uri: property.img_url.url()}} />
         <View style={styles.heading}>
-          <Text style={styles.price}>£{price}</Text>
+          <Text style={styles.price}>${property.price}</Text>
           <Text style={styles.title}>{property.title}</Text>
           <View style={styles.separator}/>
         </View>

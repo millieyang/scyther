@@ -105,6 +105,17 @@ var SearchPage = React.createClass({
     this.setState({ searchString: event.nativeEvent.text });
   },
 
+  componentDidUpdate: function(prevProps, prevState) {
+  if (prevState.isLoading && (this.pendingQueries().length == 0)) {
+    this.setState({ isLoading: false });
+    this.props.navigator.push({
+      title: 'Results',
+      component: SearchResults,
+      passProps: { listings: this.data.listings }
+    });
+  }
+},
+
   render: function() {
     var spinner = this.state.isLoading ?
       ( <ActivityIndicatorIOS
