@@ -1,8 +1,8 @@
 'use strict';
 
 var React = require('react-native');
-var Parse = require('parse').Parse;
-var ParseReact = require('parse-react');
+var Parse = require('parse/react-native');
+var ParseReact = require('parse-react/react-native');
 var SearchResults = require('./SearchResults');
 var {
   StyleSheet,
