@@ -84,6 +84,15 @@ var LoginPage = React.createClass({
 		this._executeQuery();
 	},
 
+	onUsernameChanged:function(){
+		this.setState({query.username:event.nativeEvent.text});
+	},
+
+	onPasswordChanged:function(){
+		this.setState({query.password:event.nativeEvent.text});
+	},
+
+
 	_executeQuery: function(query) {
 		this.setState({ isLoading: true });
 		var loginQuery = (new Parse.Query('User'))
