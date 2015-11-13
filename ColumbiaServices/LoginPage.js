@@ -128,37 +128,40 @@ var LoginPage = React.createClass({
 	},
 
 	render: function() {
-		/*
 		var spinner = this.state.isLoading ?
 			(<ActivityIndicatorIOS
 				hidden='true'
 				size='large'/>):
 			(<View/>);
-		*/
-	    return (
-	      <View style={styles.container}>
-	        <Text style={styles.description}>
-	          Search for houses to buy!
-	        </Text>
-	        <Text style={styles.description}>
-	          Search by place-name, postcode or search near your location.
-	        </Text>
-	        <View style={styles.flowRight}>
-	          <TextInput
-	            style={styles.searchInput}
-	            placeholder='Search via name or postcode'/>
-	          <TouchableHighlight style={styles.button}
-	              underlayColor='#99d9f4'>
-	            <Text style={styles.buttonText}>Go</Text>
-	          </TouchableHighlight>
-	        </View>
-	        <TouchableHighlight style={styles.button}
-	            underlayColor='#99d9f4'>
-	          <Text style={styles.buttonText}>Location</Text>
-	        </TouchableHighlight>
-	        <Text style={styles.description}>{this.state.message}</Text>
-	      </View>
-	    );
+		
+		return (
+			<View style={styles.container}>
+				<View style={styles.flowRight}>
+					<TextInput
+						style={styles.loginField}
+						placeholder='Username'
+						value={this.state.username}
+						onChangeText={(text) => this.setState({username: text})}/>
+				</View>
+
+				<View style={styles.flowRight}>
+					<TextInput
+						style={styles.loginField}
+						placeholder='Password'
+						value={this.state.password}
+						onChangeText={(text) => this.setState({password: text})}/>
+				</View>
+				
+				<TouchableHighlight style={styles.button}
+					onPress={this.onLoginPressed}
+					underlayColor='#99d9f4'>
+					<Text style={styles.buttonText}>Login</Text>
+				</TouchableHighlight>
+				{spinner}
+		        <Text style={styles.description}>{this.state.message}</Text>
+
+			</View>
+		);
 	}
 });
 
