@@ -134,9 +134,9 @@ var LoginPage = React.createClass({
 				size='large'/>):
 			(<View/>);
 
-		console.log("Hello");
-
 		return (
+			<Text>Hello?</Text>
+			/*
 			<View style={styles.container}>
 				<View style={styles.flowRight}>
 					<TextInput
@@ -160,6 +160,7 @@ var LoginPage = React.createClass({
 					<Text style={styles.buttonText}>Login</Text>
 				</TouchableHighlight>
 			</View>
+			*/
 		);
 	}
 })
