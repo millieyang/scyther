@@ -69,7 +69,7 @@ var LoginPage = React.createClass({
 	mixins: [ParseReact.Mixin],
 	getInitialState: function() {
 		return {
-			isLoading: false
+			isLoading: false,
 			validLogin: false,
 			message: ''
 		};
@@ -83,7 +83,7 @@ var LoginPage = React.createClass({
 			.containsAll(query.password);
 
 		this._handleQuery(loginQuery);
-	}
+	},
 
 	_handleQuery: function(loginQuery) {
 	  loginQuery.count({
@@ -108,7 +108,7 @@ var LoginPage = React.createClass({
 	  				message: 'Something is wrong with our database. Please contact us if you see this message!'
 	  			});
 	  		}
-	  	}
+	  	},
 
 	  	error: function(error) {
 	  		this.setState({
