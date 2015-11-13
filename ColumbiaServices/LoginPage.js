@@ -78,11 +78,13 @@ var LoginPage = React.createClass({
 	},
 
 	observe: function(props, state) {
+		/
 		var loginQuery = (new Parse.Query('User'))
 			.containsAll(state.username)
 			.containsAll(state.password);
 
 		return state.isLoading ? {login: loginQuery} : null;
+		*/
 
 	},
 
@@ -138,7 +140,6 @@ var LoginPage = React.createClass({
 		return (
 			<View style={styles.container}>
 				<View style={styles.flowRight}>
-					<Text>BLOOP</Text>
 					<TextInput
 						style={styles.loginField}
 						placeholder='Username'
