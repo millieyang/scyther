@@ -69,7 +69,7 @@ var LoginPage = React.createClass({
 	mixins: [ParseReact.Mixin],
 	getInitialState: function() {
 		return {
-			query = {
+			query: {
 				username: '',
 				password: ''
 			},
