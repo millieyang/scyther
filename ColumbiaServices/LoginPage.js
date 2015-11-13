@@ -138,6 +138,7 @@ var LoginPage = React.createClass({
 		return (
 			<View style={styles.container}>
 				<View style={styles.flowRight}>
+					<Text>BLOOP</Text>
 					<TextInput
 						style={styles.loginField}
 						placeholder='Username'
