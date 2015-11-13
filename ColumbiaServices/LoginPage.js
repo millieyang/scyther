@@ -144,7 +144,7 @@ var LoginPage = React.createClass({
 						style={styles.loginField}
 						placeholder='Username'
 						value={this.state.query.username}
-						onChange={this.onUsernameChanged}/>
+						onChangeText={(text) => this.setState({query.username: text})}/>
 				</View>
 
 				<View style={styles.flowRight}>
@@ -152,7 +152,7 @@ var LoginPage = React.createClass({
 						style={styles.loginField}
 						placeholder='Password'
 						value={this.state.query.password}
-						onChange={this.onPasswordChanged}/>
+						onChangeText={(text) => this.setState(query.password: text)}/>
 				</View>
 
 				<TouchableHighlight style={styles.button}
