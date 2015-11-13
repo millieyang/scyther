@@ -70,10 +70,8 @@ var LoginPage = React.createClass({
 	mixins: [ParseReact.Mixin],
 	getInitialState: function() {
 		return {
-			query :{
-				username: '',
-				password: ''
-			},
+			username: '',
+			password: '',
 			isLoading: false,
 			validLogin: false,
 			message: ''
@@ -82,6 +80,7 @@ var LoginPage = React.createClass({
 
 	onLoginPressed: function() {
 		this._executeQuery();
+		console.log("HIAHIHI");
 	},
 
 	// onUsernameChanged:function(event){
@@ -93,15 +92,14 @@ var LoginPage = React.createClass({
 	// },
 	observe: function(props, state){
 		var loginQuery = (new Parse.Query('User'))
-			.containsAll(state.query.username)
-			.containsAll(state.query.password);
+			.containsAll(state.username)
+			.containsAll(state.password);
 		return state.isLoading ? {login: loginQuery} : null;
 	},
 
 
 	_executeQuery: function(query) {
 		this.setState({ isLoading: true });
-		
 		this._handleQuery(this.data.login);
 	},
 
@@ -145,23 +143,23 @@ var LoginPage = React.createClass({
 				hidden='true'
 				size='large'/>):
 			(<View/>);
-
+		console.log("please work");
 		return (
 			<View style={styles.container}>
 				<View style={styles.flowRight}>
 					  <TextInput
     					style={styles.loginField}
     					placeholder = 'Username'
-    					value = {this.state.query.username}
-    					onChangeText={(text) => this.setState({text})}/>
+    					value = {this.state.username}
+    					onChangeText={(text) => this.setState({username: text})}/>
 				</View>
 
 				<View style={styles.flowRight}>
 					<TextInput
 						style={styles.loginField}
 						placeholder='Password'
-						value={this.state.query.password}
-						onChangeText={(text) => this.setState({text})}/>
+						value={this.state.password}
+						onChangeText={(text) => this.setState({password: text})}/>
 				</View>
 
 				<TouchableHighlight style={styles.button}
