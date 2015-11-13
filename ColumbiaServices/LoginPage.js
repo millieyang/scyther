@@ -151,9 +151,9 @@ var LoginPage = React.createClass({
 						onChange={this.onPasswordChanged}/>
 				</View>
 
-				<TouchableHightlight style={styles.button}
+				<TouchableHighlight style={styles.button}
 					onPress={this.onLoginPressed}
-					underlayColor='#99d9f4'>
+					underlayColor='#99d9f4'/>
 			</View>
 		);
 	}
