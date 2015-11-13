@@ -78,14 +78,11 @@ var LoginPage = React.createClass({
 	},
 
 	observe: function(props, state) {
-		/*
 		var loginQuery = (new Parse.Query('User'))
 			.containsAll(state.username)
 			.containsAll(state.password);
 
 		return state.isLoading ? {login: loginQuery} : null;
-		*/
-
 	},
 
 	onLoginPressed: function() {
@@ -136,6 +133,8 @@ var LoginPage = React.createClass({
 				hidden='true'
 				size='large'/>):
 			(<View/>);
+
+		console.log("Hello");
 
 		return (
 			<View style={styles.container}>
