@@ -79,18 +79,22 @@ var LoginPage = React.createClass({
 		};
 	},
 
+	observe: function(props, state) {
+		var loginQuery = (new Parse.Query('User'))
+			.containsAll(query.username)
+			.containsAll(query.password);
+
+		return state.isLoading ? {login: loginQuery} : null;
+
+	}
+
 	onLoginPressed: function() {
 		this._executeQuery();
 	},
 
 	_executeQuery: function(query) {
 		this.setState({ isLoading: true });
-		var loginQuery = (new Parse.Query('User'))
-			.ascending('username')
-			.containsAll(query.username)
-			.containsAll(query.password);
-
-		this._handleQuery(loginQuery);
+		this._handleQuery(this.login);
 	},
 
 	_handleQuery: function(loginQuery) {
