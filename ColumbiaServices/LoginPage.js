@@ -128,11 +128,13 @@ var LoginPage = React.createClass({
 	},
 
 	render: function() {
+		/*
 		var spinner = this.state.isLoading ?
 			(<ActivityIndicatorIOS
 				hidden='true'
 				size='large'/>):
 			(<View/>);
+		*/
 	    return (
 	      <View style={styles.container}>
 	        <Text style={styles.description}>
@@ -154,7 +156,6 @@ var LoginPage = React.createClass({
 	            underlayColor='#99d9f4'>
 	          <Text style={styles.buttonText}>Location</Text>
 	        </TouchableHighlight>
-	        {spinner}
 	        <Text style={styles.description}>{this.state.message}</Text>
 	      </View>
 	    );
