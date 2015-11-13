@@ -1,0 +1,3 @@
+rootProject.name = 'ColumbiaServices'
+
+include ':app'
