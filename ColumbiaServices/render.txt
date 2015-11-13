@@ -1,0 +1,29 @@
+		return (
+			<View style={styles.container}>
+				<View style={styles.flowRight}>
+					<TextInput
+						style={styles.loginField}
+						placeholder='Username'
+						value={this.state.username}
+						onChangeText={(text) => this.setState({username: text})}/>
+				</View>
+
+				<View style={styles.flowRight}>
+					<TextInput
+						style={styles.loginField}
+						placeholder='Password'
+						value={this.state.password}
+						onChangeText={(text) => this.setState({password: text})}/>
+				</View>
+				
+				<TouchableHighlight style={styles.button}
+					onPress={this.onLoginPressed}
+					underlayColor='#99d9f4'>
+					<Text style={styles.buttonText}>Login</Text>
+				</TouchableHighlight>
+
+				{spinner}
+		        <Text style={styles.description}>{this.state.message}</Text>
+
+			</View>
+		);
