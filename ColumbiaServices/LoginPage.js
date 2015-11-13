@@ -158,8 +158,7 @@ var LoginPage = React.createClass({
 	        <Text style={styles.description}>{this.state.message}</Text>
 	      </View>
 	    );
-
 	}
-})
+});
 
 module.exports = LoginPage;
