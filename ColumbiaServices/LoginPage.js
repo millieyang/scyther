@@ -157,7 +157,7 @@ var LoginPage = React.createClass({
 
 				<TouchableHighlight style={styles.button}
 					onPress={this.onLoginPressed}
-					underlayColor='#99d9f4'/>
+					underlayColor='#99d9f4'>
 					<Text style={styles.buttonText}>Login</Text>
 				</TouchableHighlight>
 			</View>
