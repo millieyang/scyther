@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react-native');
+var LoginPage = require('./LoginPage');
 var Parse = require('parse/react-native');
 var ParseReact = require('parse-react/react-native');
 Parse.initialize(
