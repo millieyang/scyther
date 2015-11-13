@@ -35,33 +35,34 @@ var styles = StyleSheet.create({
 		color: 'white',
 		alignSelf: 'center'
 	},
-  button: {
-    height: 36,
-    flex: 1,
-    flexDirection: 'row',
-    backgroundColor: '#48BBEC',
-    borderColor: '#48BBEC',
-    borderWidth: 1,
-    borderRadius: 8,
-    marginBottom: 10,
-    alignSelf: 'stretch',
-    justifyContent: 'center'
-  },
-  searchInput: {
-    height: 36,
-    padding: 4,
-    marginRight: 5,
-    flex: 4,
-    fontSize: 18,
-    borderWidth: 1,
-    borderColor: '#48BBEC',
-    borderRadius: 8,
-    color: '#48BBEC'
-  },
-  image: {
-    width: 217,
-    height: 138
-  }
+
+	button: {
+		height: 36,
+		flex: 1,
+		flexDirection: 'row',
+		backgroundColor: '#48BBEC',
+		borderColor: '#48BBEC',
+		borderWidth: 1,
+		borderRadius: 8,
+		marginBottom: 10,
+		alignSelf: 'stretch',
+		justifyContent: 'center'
+	},
+	loginField: {
+		height: 36,
+		padding: 4,
+		marginRight: 5,
+		flex: 4,
+		fontSize: 18,
+		borderWidth: 1,
+		borderColor: '#48BBEC',
+		borderRadius: 8,
+		color: '#48BBEC'
+	},
+	image: {
+		width: 217,
+		height: 138
+	}
 });
 
 
@@ -69,10 +70,18 @@ var LoginPage = React.createClass({
 	mixins: [ParseReact.Mixin],
 	getInitialState: function() {
 		return {
+			query = {
+				username: '',
+				password: ''
+			},
 			isLoading: false,
 			validLogin: false,
 			message: ''
 		};
+	},
+
+	onLoginPressed: function() {
+		this._executeQuery();
 	},
 
 	_executeQuery: function(query) {
@@ -116,11 +125,43 @@ var LoginPage = React.createClass({
 	  		});
 	  	}
 	  });
+
+	},
+
+	render: function() {
+		var spinner = this.state.isLoading ?
+			(<ActivityIndicatorIOS
+				hidden='true'
+				size='large'/>):
+			(<View/>);
+
+		return (
+			<View style={styles.container}>
+				<View style={styles.flowRight}>
+					<TextInput
+						style={styles.loginField}
+						placeholder='Username'
+						value={this.state.query.username}
+						onChange={this.onUsernameChanged}/>
+				</View>
+
+				<View style={styles.flowRight}>
+					<TextInput
+						style={styles.loginField}
+						placeholder='Password'
+						value={this.state.query.password}
+						onChange={this.onPasswordChanged}/>
+				</View>
+
+				<TouchableHightlight style={styles.button}
+					onPress={this.onLoginPressed}
+					underlayColor='#99d9f4'>
+			</View>
+		);
 	}
 
 
-
-})
+});
 
 
 

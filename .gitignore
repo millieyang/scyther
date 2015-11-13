@@ -1,5 +1,5 @@
 
-st part of this file is created by https://www.gitignore.io
+# Most part of this file is created by https://www.gitignore.io
 
 ### Node ###
 # Logs
@@ -74,3 +74,4 @@ xcuserdata
 *.moved-aside
 DerivedData
 *.xcuserstate
+
