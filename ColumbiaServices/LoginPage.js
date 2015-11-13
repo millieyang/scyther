@@ -86,7 +86,7 @@ var LoginPage = React.createClass({
 
 		return state.isLoading ? {login: loginQuery} : null;
 
-	}
+	},
 
 	onLoginPressed: function() {
 		this._executeQuery();
