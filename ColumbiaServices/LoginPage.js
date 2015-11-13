@@ -8,7 +8,7 @@ var {
 	Text,
 	TextInput,
 	View,
-	TouchableHightlight,
+	TouchableHighlight,
 	ActivityIndicatorIOS,
 	Image,
 } = React;
@@ -70,7 +70,7 @@ var LoginPage = React.createClass({
 	mixins: [ParseReact.Mixin],
 	getInitialState: function() {
 		return {
-			query = {
+			query :{
 				username: '',
 				password: ''
 			},
@@ -84,23 +84,25 @@ var LoginPage = React.createClass({
 		this._executeQuery();
 	},
 
-	onUsernameChanged:function(){
-		this.setState({query.username:event.nativeEvent.text});
-	},
+	// onUsernameChanged:function(event){
+	//  	this.setState({query.username: event.nativeEvent.text});
+	// },
 
-	onPasswordChanged:function(){
-		this.setState({query.password:event.nativeEvent.text});
+	// onPasswordChanged:function(event){
+	//  	this.setState({query.password: event.nativeEvent.text});
+	// },
+	observe: function(props, state){
+		var loginQuery = (new Parse.Query('User'))
+			.containsAll(state.query.username)
+			.containsAll(state.query.password);
+		return state.isLoading ? {login: loginQuery} : null;
 	},
 
 
 	_executeQuery: function(query) {
 		this.setState({ isLoading: true });
-		var loginQuery = (new Parse.Query('User'))
-			.ascending('username')
-			.containsAll(query.username)
-			.containsAll(query.password);
-
-		this._handleQuery(loginQuery);
+		
+		this._handleQuery(this.data.login);
 	},
 
 	_handleQuery: function(loginQuery) {
@@ -147,11 +149,11 @@ var LoginPage = React.createClass({
 		return (
 			<View style={styles.container}>
 				<View style={styles.flowRight}>
-					<TextInput
-						style={styles.loginField}
-						placeholder='Username'
-						value={this.state.query.username}
-						onChange={this.onUsernameChanged}/>
+					  <TextInput
+    					style={styles.loginField}
+    					placeholder = 'Username'
+    					value = {this.state.query.username}
+    					onChangeText={(text) => this.setState({text})}/>
 				</View>
 
 				<View style={styles.flowRight}>
@@ -159,12 +161,14 @@ var LoginPage = React.createClass({
 						style={styles.loginField}
 						placeholder='Password'
 						value={this.state.query.password}
-						onChange={this.onPasswordChanged}/>
+						onChangeText={(text) => this.setState({text})}/>
 				</View>
 
-				<TouchableHightlight style={styles.button}
+				<TouchableHighlight style={styles.button}
 					onPress={this.onLoginPressed}
 					underlayColor='#99d9f4'>
+				<Text style={styles.buttonText}>Login</Text>
+				</TouchableHighlight>
 			</View>
 		);
 	}
@@ -172,5 +176,5 @@ var LoginPage = React.createClass({
 
 });
 
-
+module.exports = LoginPage;
 
