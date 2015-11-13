@@ -8,7 +8,7 @@ var {
 	Text,
 	TextInput,
 	View,
-	TouchableHightlight,
+	TouchableHighlight,
 	ActivityIndicatorIOS,
 	Image,
 } = React;
