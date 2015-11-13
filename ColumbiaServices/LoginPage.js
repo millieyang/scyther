@@ -157,12 +157,6 @@ var LoginPage = React.createClass({
 			</View>
 		);
 	}
-
-
-
-
-
 })
 
-
-
+module.exports = LoginPage;
