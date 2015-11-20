@@ -160,6 +160,7 @@ var LoginPage = React.createClass({
 	},
 
 	render: function() {
+		console.log("Rendering...");
 		var spinner = this.state.isLoading ?
 			(<ActivityIndicatorIOS
 				hidden='true'
