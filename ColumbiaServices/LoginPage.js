@@ -82,13 +82,14 @@ var LoginPage = React.createClass({
 			password: this.state.password
 		});
 
-		userLogin.logIn(
+		userLogin.logIn({
 			success: function() {
 				console.log("YAY");
 			},
 
 			error: function(error) {
 				console.log(error);
+			}
 		});
 
 		return state.isLoading ? {user: userLogin} : null;
