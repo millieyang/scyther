@@ -77,13 +77,8 @@ var LoginPage = React.createClass({
 	},
 
 	observe: function(props, state) {
-		var userLogin = new Parse.User({
-			username: this.username,
-			password: this.password
-		});
-
-		var login = userLogin.logIn({
-			success: function() {
+		var login = Parse.User.logIn(this.username, this.password, {
+			success: function(user) {
 				console.log("YAY");
 			},
 
