@@ -82,6 +82,7 @@ var LoginPage = React.createClass({
 			.containsAll(state.username)
 			.containsAll(state.password);
 
+		console.log(loginQuery);
 		return state.isLoading ? {login: loginQuery} : null;
 	},
 
@@ -95,7 +96,6 @@ var LoginPage = React.createClass({
 	},
 
 	_handleQuery: function(loginQuery) {
-		console.log(loginQuery);
 		loginQuery.count({
 		  	success: function(number) {
 		  		if (number == 1) {
