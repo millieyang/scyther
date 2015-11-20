@@ -68,6 +68,7 @@ var styles = StyleSheet.create({
 var LoginPage = React.createClass({
 	username: '',
 	password: '',
+	validLogin: false,
 	mixins: [ParseReact.Mixin],
 	getInitialState: function() {
 		return {
@@ -79,6 +80,7 @@ var LoginPage = React.createClass({
 	observe: function(props, state) {
 		var login = Parse.User.logIn(this.username, this.password, {
 			success: function(user) {
+				this.validLogin = true;
 				console.log("YAY");
 			},
 
@@ -124,7 +126,8 @@ var LoginPage = React.createClass({
 	componentDidUpdate: function(prevProps, prevState) {
 		console.log("Updating...");
 		console.log(prevState.isLoading);
-		if (prevState.isLoading) {
+		console.log(this.validLogin);
+		if (prevState.isLoading && this.validLogin) {
 			this.setState({isLoading: false});
 		    this.props.navigator.push({
 		        title: 'Tasks',
