@@ -66,64 +66,55 @@ var styles = StyleSheet.create({
 
 
 var LoginPage = React.createClass({
-	username: '',
-	password: '',
-	count: 0,
 	mixins: [ParseReact.Mixin],
 	getInitialState: function() {
 		return {
+			username: '',
+			password: '',
 			isLoading: false,
-			validLogin: false,
 			message: ''
 		};
 	},
 
 	observe: function(props, state) {
+		var userLogin = new Parse.User({
+			username: this.state.username,
+			password: this.state.password
+		});
+
+		userLogin.logIn(
+			success: function() {
+				console.log("YAY");
+			},
+
+			error: function(error) {
+				console.log(error);
+		});
+
+		return state.isLoading ? {user: userLogin} : null;
+
+		/*
 		var loginQuery = (new Parse.Query('User'));
 		loginQuery.equalTo('username', this.username);
 		loginQuery.count({
 		  	success: function(count) {
 		  		if (count == 1) {
-		  			/*
-		  			this.setState({
-		  				isLoading: false, 
-		  				validLogin: true
-		  			});
-					*/
 					this.count = count;
 					console.log("YAY");
 		  		}
 
 		  		else if (count == 0) {
-		  			/*
-		  			this.setState({
-		  				isLoading: false,
-		  				message: 'Invalid login. Please try again!'
-		  			});
-					*/
 					this.count = count;
 					console.log("NAY");
 		  		}
 
 		  		else {
-		  			/*
-		  			this.setState({
-		  				isLoading: false,
-		  				message: 'Something is wrong with our database. Please contact us if you see this message!'
-		  			});
-					*/
 					this.count = count;
 					console.log("PRAY");
 		  		}
 		  	},
 
 		  	error: function(error) {
-		  		/*
-		  		this.setState({
-		  			isLoading: false,
-		  			message: 'There was a problem looking up your login: ' + error
-		  		});
-				*/
 				console.log("ERRAY");
 		  	}
 		});
@@ -131,20 +122,34 @@ var LoginPage = React.createClass({
 		console.log("bloopopopopopoppopo");
 		console.log(loginQuery);
 		return {login: loginQuery};
+		*/
 	},
+
+	componentDidUpdate: function(prevProps, prevState) {
+		if (prevState.isLoading) {
+			this.setState({isLoading: false});
+		    this.props.navigator.push({
+		        title: 'Tasks',
+		        component: Tasks,
+		        passProps: {user: this.data.user}
+		    });
+		}
+	}
 
 	onLoginPressed: function() {
 		this._executeQuery();
 	},
 
 	_executeQuery: function() {
+		
 		this.setState({ isLoading: true });
+		/*
 		console.log("bleepbelpbleplbpleblpelbpel");
 		console.log(this.data.login);
 		if (this.count == 0) {
 			console.log("WAHWAHWAH");
 		}
-		this.setState({ isLoading: false});
+		*/
 	},
 
 	render: function() {
@@ -160,14 +165,14 @@ var LoginPage = React.createClass({
 					<TextInput
 						style={styles.loginField}
 						placeholder='Username'
-						onChangeText={(text) => this.username = text}/>
+						onChangeText={(text) => this.setState({username: text})}/>
 				</View>
 
 				<View style={styles.flowRight}>
 					<TextInput
 						style={styles.loginField}
 						placeholder='Password'
-						onChangeText={(text) => this.password = text}
+						onChangeText={(text) => this.setState({password: text})}
 						secureTextEntry/>
 				</View>
 				
