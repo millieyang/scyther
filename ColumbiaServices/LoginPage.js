@@ -1,3 +1,4 @@
+
 'use strict';
 
 var React = require('react-native');
@@ -95,36 +96,37 @@ var LoginPage = React.createClass({
 	},
 
 	_handleQuery: function(loginQuery) {
-	  loginQuery.count({
-	  	success: function(number) {
-	  		if (number == 1) {
-	  			this.setState({
-	  				isLoading: false, 
-	  				validLogin: true
-	  			});
-	  		}
+		console.log(loginQuery);
+		loginQuery.count({
+		  	success: function(number) {
+		  		if (number == 1) {
+		  			this.setState({
+		  				isLoading: false, 
+		  				validLogin: true
+		  			});
+		  		}
 
-	  		else if (number == 0) {
-	  			this.setState({
-	  				isLoading: false,
-	  				message: 'Invalid login. Please try again!'
-	  			});
-	  		}
+		  		else if (number == 0) {
+		  			this.setState({
+		  				isLoading: false,
+		  				message: 'Invalid login. Please try again!'
+		  			});
+		  		}
 
-	  		else {
-	  			this.setState({
-	  				isLoading: false,
-	  				message: 'Something is wrong with our database. Please contact us if you see this message!'
-	  			});
-	  		}
-	  	},
+		  		else {
+		  			this.setState({
+		  				isLoading: false,
+		  				message: 'Something is wrong with our database. Please contact us if you see this message!'
+		  			});
+		  		}
+		  	},
 
-	  	error: function(error) {
-	  		this.setState({
-	  			message: 'There was a problem looking up your login: ' + error
-	  		});
-	  	}
-	  });
+		  	error: function(error) {
+		  		this.setState({
+		  			message: 'There was a problem looking up your login: ' + error
+		  		});
+		  	}
+		});
 	},
 
 	render: function() {
@@ -146,6 +148,7 @@ var LoginPage = React.createClass({
 
 				<View style={styles.flowRight}>
 					<TextInput
+						secureTextEntry=true
 						style={styles.loginField}
 						placeholder='Password'
 						value={this.state.password}
