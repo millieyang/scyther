@@ -78,12 +78,8 @@ var LoginPage = React.createClass({
 	},
 
 	observe: function(props, state) {
-		var loginQuery = (new Parse.Query('User'))
-			.containsAll('username', state.username)
-			.containsAll('password', state.password);
+		var loginQuery = (new Parse.Query('User'));
 
-		console.log("Hello boop");
-		console.log(loginQuery);
 		return state.isLoading ? {login: loginQuery} : null;
 	},
 
@@ -142,7 +138,8 @@ var LoginPage = React.createClass({
 					<TextInput
 						style={styles.loginField}
 						placeholder='Username'
-						value={this.state.username}/>
+						value={this.state.username}
+						onChangeText={(text) => this.setState({username: text})}/>
 				</View>
 
 				<View style={styles.flowRight}>
@@ -150,7 +147,8 @@ var LoginPage = React.createClass({
 						style={styles.loginField}
 						placeholder='Password'
 						value={this.state.password}
-						secureTextEntry/>
+						secureTextEntry
+						onChangeText={(text) => this.setState({password: text})}/>
 				</View>
 				
 				<TouchableHighlight style={styles.button}
