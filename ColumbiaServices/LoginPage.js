@@ -98,6 +98,9 @@ var LoginPage = React.createClass({
 
 	_executeQuery: function() {
 		this.setState({ isLoading: true });
+
+		var loginQuery = (new Parse.Query('User'));
+		console.log(loginQuery);
 		console.log("AHHHHH");
 		console.log(this.data);
 		this._handleQuery(this.data.login);
