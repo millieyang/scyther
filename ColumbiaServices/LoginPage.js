@@ -71,8 +71,6 @@ var LoginPage = React.createClass({
 	mixins: [ParseReact.Mixin],
 	getInitialState: function() {
 		return {
-			username: '',
-			password: '',
 			isLoading: false,
 			validLogin: false,
 			message: ''
@@ -81,25 +79,8 @@ var LoginPage = React.createClass({
 
 	observe: function(props, state) {
 		var loginQuery = (new Parse.Query('User'));
-		loginQuery.equalTo('username', 'bzprules');
-
-		console.log("bloopopopopopoppopo");
-		console.log(loginQuery);
-		return {login: loginQuery};
-	},
-
-	onLoginPressed: function() {
-		this._executeQuery();
-	},
-
-	_executeQuery: function() {
-		this.setState({ isLoading: true });
-		console.log("bleepbelpbleplbpleblpelbpel");
-		console.log(this.data.login);
-		this._handleQuery(this.data.login);
-	},
-
-	_handleQuery: function(loginQuery) {
+		loginQuery.equalTo('username', this.username);
+		loginQuery.equalTo('password', this.password);
 		loginQuery.count({
 		  	success: function(count) {
 		  		if (count == 1) {
@@ -131,12 +112,28 @@ var LoginPage = React.createClass({
 		  		});
 		  	}
 		});
+
+		console.log("bloopopopopopoppopo");
+		console.log(loginQuery);
+		return {login: loginQuery};
+	},
+
+	onLoginPressed: function() {
+		this._executeQuery();
+	},
+
+	_executeQuery: function() {
+		this.setState({ isLoading: true });
+		console.log("bleepbelpbleplbpleblpelbpel");
+		console.log(this.data.login);
+		this._handleQuery(this.data.login);
+	},
+
+	_handleQuery: function(loginQuery) {
+
 	},
 
 	render: function() {
-		console.log("blapblapbpalbpalpblapbla");
-		console.log(this.data.login);
-
 		var spinner = this.state.isLoading ?
 			(<ActivityIndicatorIOS
 				hidden='true'
