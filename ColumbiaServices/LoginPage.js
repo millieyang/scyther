@@ -66,6 +66,9 @@ var styles = StyleSheet.create({
 
 
 var LoginPage = React.createClass({
+	var username;
+	var password;
+
 	mixins: [ParseReact.Mixin],
 	getInitialState: function() {
 		return {
@@ -98,12 +101,6 @@ var LoginPage = React.createClass({
 	},
 
 	_handleQuery: function(loginQuery) {
-		console.log("blupblubplbublbupbluplubplubp");
-		console.log(this.data.login);
-		/*
-		loginQuery.equalTo('username', this.state.username);
-		loginQuery.equalTo('password', this.state.password);
-		*/
 		loginQuery.count({
 		  	success: function(count) {
 		  		if (count == 1) {
@@ -146,24 +143,24 @@ var LoginPage = React.createClass({
 				hidden='true'
 				size='large'/>):
 			(<View/>);
-		
-		return (
+
+		return (	
 			<View style={styles.container}>
 				<View style={styles.flowRight}>
 					<TextInput
 						style={styles.loginField}
 						placeholder='Username'
-						value={this.state.username}
-						onChangeText={(text) => this.setState({username: text})}/>
+						value={this.username}
+						onChangeText={(text) => this.username = text}/>
 				</View>
 
 				<View style={styles.flowRight}>
 					<TextInput
 						style={styles.loginField}
 						placeholder='Password'
-						value={this.state.password}
-						secureTextEntry
-						onChangeText={(text) => this.setState({password: text})}/>
+						value={this.password}
+						onChangeText={(text) => this.password = text}
+						secureTextEntry/>
 				</View>
 				
 				<TouchableHighlight style={styles.button}
