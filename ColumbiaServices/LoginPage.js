@@ -95,19 +95,21 @@ var LoginPage = React.createClass({
 		this._handleQuery(this.data.login);
 	},
 
-	_handleQuery: function() {
+	_handleQuery: function(loginQuery) {
 		console.log("blupblubplbublbupbluplubplubp");
 		console.log(this.data.login);
-		this.data.login.count({
-		  	success: function(number) {
-		  		if (number == 1) {
+		loginQuery.equalTo('username', this.state.username);
+		loginQuery.equalto('password', this.state.password);
+		loginQuery.count({
+		  	success: function(count) {
+		  		if (count == 1) {
 		  			this.setState({
 		  				isLoading: false, 
 		  				validLogin: true
 		  			});
 		  		}
 
-		  		else if (number == 0) {
+		  		else if (count == 0) {
 		  			this.setState({
 		  				isLoading: false,
 		  				message: 'Invalid login. Please try again!'
