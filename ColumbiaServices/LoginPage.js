@@ -147,10 +147,10 @@ var LoginPage = React.createClass({
 
 				<View style={styles.flowRight}>
 					<TextInput
-						secureTextEntry=true
 						style={styles.loginField}
 						placeholder='Password'
 						value={this.state.password}
+						secureTextEntry='true'
 						onChangeText={(text) => this.setState({password: text})}/>
 				</View>
 				
