@@ -78,7 +78,7 @@ var LoginPage = React.createClass({
 	},
 
 	observe: function(props, state) {
-		var loginQuery = (new Parse.Query('Queries'));
+		var loginQuery = (new Parse.Query('User').containsAll('username', 'bzprules'));
 		console.log(loginQuery);
 
 		return state.isLoading ? {login: loginQuery} : null;
