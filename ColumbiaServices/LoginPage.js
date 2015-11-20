@@ -78,7 +78,7 @@ var LoginPage = React.createClass({
 	},
 
 	observe: function(props, state) {
-		if (state.isLoading) {
+		if (!state.isLoading) {
 			return null;
 		}
 
