@@ -86,6 +86,9 @@ var LoginPage = React.createClass({
 			var loginQuery = (new Parse.Query('User')
 								.containsAll('username', state.username)
 								.containsAll('password', state.password));
+
+			console.log('WHOOOOOOP');
+			console.log(loginQuery);
 			return {login: loginQuery};
 		}
 
