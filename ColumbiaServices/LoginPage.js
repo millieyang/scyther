@@ -84,7 +84,6 @@ var LoginPage = React.createClass({
 
 		else {
 			var loginQuery = (new Parse.Query('User'));
-
 			console.log('WHOOOOOOP');
 			console.log(loginQuery);
 			return {login: loginQuery};
@@ -97,8 +96,9 @@ var LoginPage = React.createClass({
 	},
 
 	_executeQuery: function() {
+		/*
 		this.setState({ isLoading: true });
-
+		*/
 		var loginQuery = (new Parse.Query('User'));
 		console.log(loginQuery);
 		console.log("AHHHHH");
