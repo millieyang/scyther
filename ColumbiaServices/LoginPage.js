@@ -135,7 +135,7 @@ var LoginPage = React.createClass({
 		        passProps: {user: this.data.user}
 		    });
 		}
-	}
+	},
 
 	onLoginPressed: function() {
 		this._executeQuery();
