@@ -100,6 +100,7 @@ var LoginPage = React.createClass({
 
 	_executeQuery: function() {
 		this.setState({ isLoading: true });
+		console.log(this.data);
 		this._handleQuery(this.data.login);
 	},
 
