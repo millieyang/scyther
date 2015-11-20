@@ -134,6 +134,13 @@ var LoginPage = React.createClass({
 		        component: Tasks
 		    });
 		}
+
+		else if (prevState.isLoading && this.validLogin) {
+			this.setState({
+				isLoading: false,
+				message: "Invalid login; please try again."
+			});
+		}
 	},
 
 	onLoginPressed: function() {
