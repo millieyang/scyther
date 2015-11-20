@@ -79,7 +79,6 @@ var LoginPage = React.createClass({
 
 	observe: function(props, state) {
 		var loginQuery = (new Parse.Query('User'));
-		console.log(loginQuery);
 
 		return state.isLoading ? {login: loginQuery} : null;
 	},
@@ -128,6 +127,8 @@ var LoginPage = React.createClass({
 	},
 
 	render: function() {
+		console.log(this.data.login);
+
 		var spinner = this.state.isLoading ?
 			(<ActivityIndicatorIOS
 				hidden='true'
