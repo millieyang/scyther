@@ -140,7 +140,7 @@ var LoginPage = React.createClass({
 				isLoading: false,
 				message: "Invalid login; please try again."
 			});
-			this.props.navigator.replace({
+			this.props.navigator.push({
 				title: 'Login',
 				component: LoginPage
 			});
