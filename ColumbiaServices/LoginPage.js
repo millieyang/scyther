@@ -66,9 +66,8 @@ var styles = StyleSheet.create({
 
 
 var LoginPage = React.createClass({
-	var username;
-	var password;
-
+	username: '',
+	password: '',
 	mixins: [ParseReact.Mixin],
 	getInitialState: function() {
 		return {
