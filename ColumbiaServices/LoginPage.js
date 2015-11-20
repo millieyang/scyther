@@ -79,6 +79,7 @@ var LoginPage = React.createClass({
 
 	observe: function(props, state) {
 		var loginQuery = (new Parse.Query('User'));
+		console.log("bloopopopopopoppopo");
 		console.log(loginQuery);
 		return {login: loginQuery};
 	},
@@ -127,6 +128,7 @@ var LoginPage = React.createClass({
 	},
 
 	render: function() {
+		console.log("blapblapbpalbpalpblapbla");
 		console.log(this.data.login);
 
 		var spinner = this.state.isLoading ?
