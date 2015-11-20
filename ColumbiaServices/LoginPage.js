@@ -82,6 +82,7 @@ var LoginPage = React.createClass({
 			.containsAll(state.username)
 			.containsAll(state.password);
 
+		console.log("Hello boop");
 		console.log(loginQuery);
 		return state.isLoading ? {login: loginQuery} : null;
 	},
