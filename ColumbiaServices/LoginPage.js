@@ -78,10 +78,13 @@ var LoginPage = React.createClass({
 	},
 
 	observe: function(props, state) {
+		/*
 		var loginQuery = (new Parse.Query('User'));
 		console.log(loginQuery);
 
 		return state.isLoading ? {login: loginQuery} : null;
+		*/
+		return null;
 	},
 
 	onLoginPressed: function() {
@@ -90,7 +93,13 @@ var LoginPage = React.createClass({
 
 	_executeQuery: function() {
 		this.setState({ isLoading: true });
+
+		var loginQuery = (new Parse.Query('User'));
+		console.log(loginQuery);
+		this._handleQuery(loginQuery);
+		/*
 		this._handleQuery(this.data.login);
+		*/
 	},
 
 	_handleQuery: function(loginQuery) {
