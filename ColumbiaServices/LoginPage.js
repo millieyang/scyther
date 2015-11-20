@@ -92,7 +92,7 @@ var LoginPage = React.createClass({
 			}
 		});
 
-		return state.isLoading ? {user: login} : null;
+		return {user: login};
 
 		/*
 		var loginQuery = (new Parse.Query('User'));
@@ -127,6 +127,7 @@ var LoginPage = React.createClass({
 	},
 
 	componentDidUpdate: function(prevProps, prevState) {
+		console.log("Updating...");
 		if (prevState.isLoading) {
 			this.setState({isLoading: false});
 		    this.props.navigator.push({
