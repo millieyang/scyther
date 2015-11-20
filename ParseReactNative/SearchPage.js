@@ -78,7 +78,6 @@ var SearchPage = React.createClass({
 
   observe: function(props, state) {
   var listingQuery = (new Parse.Query('Listing'));
-  console.log(listingQuery);
   return state.isLoading ?  { listings: listingQuery } : null;
 },
 

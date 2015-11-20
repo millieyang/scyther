@@ -78,7 +78,17 @@ var LoginPage = React.createClass({
 	},
 
 	observe: function(props, state) {
-		return null;
+		if (state.isLoading) {
+			return null;
+		}
+
+		else {
+			var loginQuery = (new Parse.Query('User')
+								.containsAll('username', state.username)
+								.containsAll('password', state.password));
+			return {login: loginQuery};
+		}
+
 	},
 
 	onLoginPressed: function() {
@@ -87,8 +97,7 @@ var LoginPage = React.createClass({
 
 	_executeQuery: function() {
 		this.setState({ isLoading: true });
-		var loginQuery = (new Parse.Query('User')).containsAll('username', 'bzprules');
-		this._handleQuery(loginQuery);
+		this._handleQuery(this.data.login);
 	},
 
 	_handleQuery: function(loginQuery) {
@@ -118,6 +127,7 @@ var LoginPage = React.createClass({
 
 		  	error: function(error) {
 		  		this.setState({
+		  			isLoading: false,
 		  			message: 'There was a problem looking up your login: ' + error
 		  		});
 		  	}
@@ -125,8 +135,6 @@ var LoginPage = React.createClass({
 	},
 
 	render: function() {
-		console.log(this.data.login);
-
 		var spinner = this.state.isLoading ?
 			(<ActivityIndicatorIOS
 				hidden='true'
