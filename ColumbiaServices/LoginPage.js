@@ -81,7 +81,6 @@ var LoginPage = React.createClass({
 	observe: function(props, state) {
 		var loginQuery = (new Parse.Query('User'));
 		loginQuery.equalTo('username', this.username);
-		loginQuery.equalTo('password', this.password);
 		loginQuery.count({
 		  	success: function(count) {
 		  		if (count == 1) {
