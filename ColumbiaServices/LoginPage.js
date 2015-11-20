@@ -78,7 +78,7 @@ var LoginPage = React.createClass({
 	},
 
 	observe: function(props, state) {
-		return null;
+		return {login: loginQuery};
 	},
 
 	onLoginPressed: function() {
