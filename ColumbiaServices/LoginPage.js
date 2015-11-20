@@ -149,7 +149,6 @@ var LoginPage = React.createClass({
 					<TextInput
 						style={styles.loginField}
 						placeholder='Username'
-						value={this.username}
 						onChangeText={(text) => this.username = text}/>
 				</View>
 
@@ -157,7 +156,6 @@ var LoginPage = React.createClass({
 					<TextInput
 						style={styles.loginField}
 						placeholder='Password'
-						value={this.password}
 						onChangeText={(text) => this.password = text}
 						secureTextEntry/>
 				</View>
