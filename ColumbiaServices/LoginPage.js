@@ -96,6 +96,7 @@ var LoginPage = React.createClass({
 	},
 
 	_handleQuery: function() {
+		console.log(this.data.login);
 		this.data.login.count({
 		  	success: function(number) {
 		  		if (number == 1) {
