@@ -150,7 +150,7 @@ var LoginPage = React.createClass({
 						style={styles.loginField}
 						placeholder='Password'
 						value={this.state.password}
-						secureTextEntry='true'
+						secureTextEntry
 						onChangeText={(text) => this.setState({password: text})}/>
 				</View>
 				
