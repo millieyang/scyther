@@ -68,6 +68,7 @@ var styles = StyleSheet.create({
 var LoginPage = React.createClass({
 	username: '',
 	password: '',
+	count: 0,
 	mixins: [ParseReact.Mixin],
 	getInitialState: function() {
 		return {
@@ -90,6 +91,7 @@ var LoginPage = React.createClass({
 		  				validLogin: true
 		  			});
 					*/
+					this.count = count;
 					console.log("YAY");
 		  		}
 
@@ -100,6 +102,7 @@ var LoginPage = React.createClass({
 		  				message: 'Invalid login. Please try again!'
 		  			});
 					*/
+					this.count = count;
 					console.log("NAY");
 		  		}
 
@@ -110,6 +113,7 @@ var LoginPage = React.createClass({
 		  				message: 'Something is wrong with our database. Please contact us if you see this message!'
 		  			});
 					*/
+					this.count = count;
 					console.log("PRAY");
 		  		}
 		  	},
@@ -138,11 +142,10 @@ var LoginPage = React.createClass({
 		this.setState({ isLoading: true });
 		console.log("bleepbelpbleplbpleblpelbpel");
 		console.log(this.data.login);
-		this._handleQuery(this.data.login);
-	},
-
-	_handleQuery: function(loginQuery) {
-
+		if (this.count == 0) {
+			console.log("WAHWAHWAH");
+		}
+		this.setState({ isLoading: false});
 	},
 
 	render: function() {
