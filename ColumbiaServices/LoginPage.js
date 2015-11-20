@@ -79,8 +79,8 @@ var LoginPage = React.createClass({
 
 	observe: function(props, state) {
 		var loginQuery = (new Parse.Query('User'))
-			.containsAll(state.username)
-			.containsAll(state.password);
+			.containsAll('username', state.username)
+			.containsAll('password', state.password);
 
 		console.log("Hello boop");
 		console.log(loginQuery);
@@ -160,6 +160,7 @@ var LoginPage = React.createClass({
 					underlayColor='#99d9f4'>
 					<Text style={styles.buttonText}>Login</Text>
 				</TouchableHighlight>
+
 				{spinner}
 		        <Text style={styles.description}>{this.state.message}</Text>
 
