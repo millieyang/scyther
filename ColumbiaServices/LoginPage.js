@@ -84,32 +84,44 @@ var LoginPage = React.createClass({
 		loginQuery.count({
 		  	success: function(count) {
 		  		if (count == 1) {
+		  			/*
 		  			this.setState({
 		  				isLoading: false, 
 		  				validLogin: true
 		  			});
+					*/
+					console.log("YAY");
 		  		}
 
 		  		else if (count == 0) {
+		  			/*
 		  			this.setState({
 		  				isLoading: false,
 		  				message: 'Invalid login. Please try again!'
 		  			});
+					*/
+					console.log("NAY");
 		  		}
 
 		  		else {
+		  			/*
 		  			this.setState({
 		  				isLoading: false,
 		  				message: 'Something is wrong with our database. Please contact us if you see this message!'
 		  			});
+					*/
+					console.log("PRAY");
 		  		}
 		  	},
 
 		  	error: function(error) {
+		  		/*
 		  		this.setState({
 		  			isLoading: false,
 		  			message: 'There was a problem looking up your login: ' + error
 		  		});
+				*/
+				console.log("ERRAY");
 		  	}
 		});
 
