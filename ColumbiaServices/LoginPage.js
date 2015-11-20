@@ -78,8 +78,7 @@ var LoginPage = React.createClass({
 	},
 
 	observe: function(props, state) {
-		var loginQuery = (new Parse.Query('User'));
-		return {login: loginQuery};
+		return {bloop: 'bloop'};
 	},
 
 	onLoginPressed: function() {
@@ -88,8 +87,8 @@ var LoginPage = React.createClass({
 
 	_executeQuery: function() {
 		this.setState({ isLoading: true });
-		this._handleQuery(this.data.login);
-		
+		var loginQuery = (new Parse.Query('User')).containsAll('username', 'bzprules');
+		this._handleQuery(loginQuery);
 	},
 
 	_handleQuery: function(loginQuery) {
