@@ -66,11 +66,11 @@ var styles = StyleSheet.create({
 
 
 var LoginPage = React.createClass({
+	var username;
+	var password;
 	mixins: [ParseReact.Mixin],
 	getInitialState: function() {
 		return {
-			username: '',
-			password: '',
 			isLoading: false,
 			message: ''
 		};
@@ -78,11 +78,11 @@ var LoginPage = React.createClass({
 
 	observe: function(props, state) {
 		var userLogin = new Parse.User({
-			username: this.state.username,
-			password: this.state.password
+			username: this.username,
+			password: this.password
 		});
 
-		userLogin.logIn({
+		var login = userLogin.logIn({
 			success: function() {
 				console.log("YAY");
 			},
@@ -92,7 +92,7 @@ var LoginPage = React.createClass({
 			}
 		});
 
-		return state.isLoading ? {user: userLogin} : null;
+		return state.isLoading ? {user: login} : null;
 
 		/*
 		var loginQuery = (new Parse.Query('User'));
@@ -166,14 +166,14 @@ var LoginPage = React.createClass({
 					<TextInput
 						style={styles.loginField}
 						placeholder='Username'
-						onChangeText={(text) => this.setState({username: text})}/>
+						onChangeText={(text) => this.username = text}/>
 				</View>
 
 				<View style={styles.flowRight}>
 					<TextInput
 						style={styles.loginField}
 						placeholder='Password'
-						onChangeText={(text) => this.setState({password: text})}
+						onChangeText={(text) => this.password = text}
 						secureTextEntry/>
 				</View>
 				
