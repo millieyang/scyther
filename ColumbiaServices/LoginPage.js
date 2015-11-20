@@ -89,7 +89,7 @@ var LoginPage = React.createClass({
 			}
 		});
 
-		return {userlogin: login};
+		return {username: this.username, password: this.password};
 
 		/*
 		var loginQuery = (new Parse.Query('User'));
