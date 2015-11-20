@@ -128,12 +128,12 @@ var LoginPage = React.createClass({
 
 	componentDidUpdate: function(prevProps, prevState) {
 		console.log("Updating...");
+		console.log(prevState.isLoading);
 		if (prevState.isLoading) {
 			this.setState({isLoading: false});
 		    this.props.navigator.push({
 		        title: 'Tasks',
-		        component: Tasks,
-		        passProps: {user: this.data.user}
+		        component: Tasks
 		    });
 		}
 	},
