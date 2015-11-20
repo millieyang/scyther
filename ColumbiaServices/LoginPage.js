@@ -135,7 +135,7 @@ var LoginPage = React.createClass({
 		    });
 		}
 
-		else if (prevState.isLoading && this.validLogin) {
+		else if (prevState.isLoading && !this.validLogin) {
 			this.setState({
 				isLoading: false,
 				message: "Invalid login; please try again."
