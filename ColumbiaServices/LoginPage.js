@@ -67,6 +67,9 @@ var styles = StyleSheet.create({
 
 
 var LoginPage = React.createClass({
+	var username;
+	var password;
+
 	mixins: [ParseReact.Mixin],
 	getInitialState: function() {
 		return {
@@ -79,11 +82,12 @@ var LoginPage = React.createClass({
 	},
 
 	observe: function(props, state) {
-		var loginQuery = (new Parse.Query('User'))
-			.containsAll(state.username)
-			.containsAll(state.password);
+		var loginQuery = (new Parse.Query('User'));
+		loginQuery.equalTo('username', 'bzprules');
 
-		return state.isLoading ? {login: loginQuery} : null;
+		console.log("bloopopopopopoppopo");
+		console.log(loginQuery);
+		return {login: loginQuery};
 	},
 
 	onLoginPressed: function() {
@@ -92,21 +96,22 @@ var LoginPage = React.createClass({
 
 	_executeQuery: function() {
 		this.setState({ isLoading: true });
+		console.log("bleepbelpbleplbpleblpelbpel");
+		console.log(this.data.login);
 		this._handleQuery(this.data.login);
 	},
 
 	_handleQuery: function(loginQuery) {
-		console.log(loginQuery);
 		loginQuery.count({
-		  	success: function(number) {
-		  		if (number == 1) {
+		  	success: function(count) {
+		  		if (count == 1) {
 		  			this.setState({
 		  				isLoading: false, 
 		  				validLogin: true
 		  			});
 		  		}
 
-		  		else if (number == 0) {
+		  		else if (count == 0) {
 		  			this.setState({
 		  				isLoading: false,
 		  				message: 'Invalid login. Please try again!'
@@ -123,6 +128,7 @@ var LoginPage = React.createClass({
 
 		  	error: function(error) {
 		  		this.setState({
+		  			isLoading: false,
 		  			message: 'There was a problem looking up your login: ' + error
 		  		});
 		  	}
@@ -130,29 +136,32 @@ var LoginPage = React.createClass({
 	},
 
 	render: function() {
+		console.log("blapblapbpalbpalpblapbla");
+		console.log(this.data.login);
+
 		var spinner = this.state.isLoading ?
 			(<ActivityIndicatorIOS
 				hidden='true'
 				size='large'/>):
 			(<View/>);
-		
-		return (
+
+		return (	
 			<View style={styles.container}>
 				<View style={styles.flowRight}>
 					<TextInput
 						style={styles.loginField}
 						placeholder='Username'
-						value={this.state.username}
-						onChangeText={(text) => this.setState({username: text})}/>
+						value={this.username}
+						onChangeText={(text) => this.username = text}/>
 				</View>
 
 				<View style={styles.flowRight}>
 					<TextInput
-						secureTextEntry=true
 						style={styles.loginField}
 						placeholder='Password'
-						value={this.state.password}
-						onChangeText={(text) => this.setState({password: text})}/>
+						value={this.password}
+						onChangeText={(text) => this.password = text}
+						secureTextEntry/>
 				</View>
 				
 				<TouchableHighlight style={styles.button}
@@ -160,6 +169,7 @@ var LoginPage = React.createClass({
 					underlayColor='#99d9f4'>
 					<Text style={styles.buttonText}>Login</Text>
 				</TouchableHighlight>
+
 				{spinner}
 		        <Text style={styles.description}>{this.state.message}</Text>
 
