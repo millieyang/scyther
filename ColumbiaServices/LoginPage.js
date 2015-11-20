@@ -67,14 +67,11 @@ var styles = StyleSheet.create({
 
 
 var LoginPage = React.createClass({
-	var username;
-	var password;
-
+	username: '',
+	password: '',
 	mixins: [ParseReact.Mixin],
 	getInitialState: function() {
 		return {
-			username: '',
-			password: '',
 			isLoading: false,
 			validLogin: false,
 			message: ''
@@ -83,7 +80,51 @@ var LoginPage = React.createClass({
 
 	observe: function(props, state) {
 		var loginQuery = (new Parse.Query('User'));
-		loginQuery.equalTo('username', 'bzprules');
+		loginQuery.equalTo('username', this.username);
+		loginQuery.equalTo('password', this.password);
+		loginQuery.count({
+		  	success: function(count) {
+		  		if (count == 1) {
+		  			/*
+		  			this.setState({
+		  				isLoading: false, 
+		  				validLogin: true
+		  			});
+					*/
+					console.log("YAY");
+		  		}
+
+		  		else if (count == 0) {
+		  			/*
+		  			this.setState({
+		  				isLoading: false,
+		  				message: 'Invalid login. Please try again!'
+		  			});
+					*/
+					console.log("NAY");
+		  		}
+
+		  		else {
+		  			/*
+		  			this.setState({
+		  				isLoading: false,
+		  				message: 'Something is wrong with our database. Please contact us if you see this message!'
+		  			});
+					*/
+					console.log("PRAY");
+		  		}
+		  	},
+
+		  	error: function(error) {
+		  		/*
+		  		this.setState({
+		  			isLoading: false,
+		  			message: 'There was a problem looking up your login: ' + error
+		  		});
+				*/
+				console.log("ERRAY");
+		  	}
+		});
 
 		console.log("bloopopopopopoppopo");
 		console.log(loginQuery);
@@ -102,43 +143,10 @@ var LoginPage = React.createClass({
 	},
 
 	_handleQuery: function(loginQuery) {
-		loginQuery.count({
-		  	success: function(count) {
-		  		if (count == 1) {
-		  			this.setState({
-		  				isLoading: false, 
-		  				validLogin: true
-		  			});
-		  		}
 
-		  		else if (count == 0) {
-		  			this.setState({
-		  				isLoading: false,
-		  				message: 'Invalid login. Please try again!'
-		  			});
-		  		}
-
-		  		else {
-		  			this.setState({
-		  				isLoading: false,
-		  				message: 'Something is wrong with our database. Please contact us if you see this message!'
-		  			});
-		  		}
-		  	},
-
-		  	error: function(error) {
-		  		this.setState({
-		  			isLoading: false,
-		  			message: 'There was a problem looking up your login: ' + error
-		  		});
-		  	}
-		});
 	},
 
 	render: function() {
-		console.log("blapblapbpalbpalpblapbla");
-		console.log(this.data.login);
-
 		var spinner = this.state.isLoading ?
 			(<ActivityIndicatorIOS
 				hidden='true'
@@ -151,7 +159,6 @@ var LoginPage = React.createClass({
 					<TextInput
 						style={styles.loginField}
 						placeholder='Username'
-						value={this.username}
 						onChangeText={(text) => this.username = text}/>
 				</View>
 
@@ -159,7 +166,6 @@ var LoginPage = React.createClass({
 					<TextInput
 						style={styles.loginField}
 						placeholder='Password'
-						value={this.password}
 						onChangeText={(text) => this.password = text}
 						secureTextEntry/>
 				</View>
