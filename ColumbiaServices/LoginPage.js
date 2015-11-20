@@ -79,6 +79,9 @@ var LoginPage = React.createClass({
 
 	observe: function(props, state) {
 		var loginQuery = (new Parse.Query('User'));
+		loginQuery.equalTo('username', state.username);
+		loginQuery.equalTo('password', state.password);
+
 		console.log("bloopopopopopoppopo");
 		console.log(loginQuery);
 		return {login: loginQuery};
@@ -98,8 +101,10 @@ var LoginPage = React.createClass({
 	_handleQuery: function(loginQuery) {
 		console.log("blupblubplbublbupbluplubplubp");
 		console.log(this.data.login);
+		/*
 		loginQuery.equalTo('username', this.state.username);
-		loginQuery.equalto('password', this.state.password);
+		loginQuery.equalTo('password', this.state.password);
+		*/
 		loginQuery.count({
 		  	success: function(count) {
 		  		if (count == 1) {
