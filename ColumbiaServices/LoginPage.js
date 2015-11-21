@@ -108,28 +108,29 @@ var LoginPage = React.createClass({
 			error: function(error) {
 				console.log(error);
 			}
-		});
+		}).then(
+			function() {
+				if (!this.validLogin) {
+					this.setState({
+						isLoading: false,
+						message: "Invalid login; please try again."
+					});
+				}
+				
+				else {
+					this.setState({
+						isLoading: false,
+						message: ''
+					});
 
-		if (!this.validLogin) {
-			this.setState({
-				isLoading: false,
-				message: "Invalid login; please try again."
-			});
-		}
-		
-		else {
-			/*
-			this.setState({
-				isLoading: false,
-				message: ''
-			});
-*/
-			this.props.navigator.replace({
-				title: 'Tasks',
-				component: Tasks
-			});
-		}
+					this.props.navigator.replace({
+						title: 'Tasks',
+						component: Tasks
+					});
+				}
+			}.bind(this)
 
+		);
 	},
 
 	render: function() {
