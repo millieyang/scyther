@@ -99,7 +99,7 @@ var LoginPage = React.createClass({
 	onLoginPressed: function() {
 		this.setState({isLoading: true});
 		console.log("Logging in...");
-		var login = Parse.User.logIn(this.username, this.password, {
+		Parse.User.logIn(this.username, this.password, {
 			success: function(user) {
 				this.validLogin = true;
 				console.log("YAY");
@@ -118,10 +118,12 @@ var LoginPage = React.createClass({
 		}
 		
 		else {
+			/*
 			this.setState({
 				isLoading: false,
 				message: ''
 			});
+*/
 			this.props.navigator.replace({
 				title: 'Tasks',
 				component: Tasks
