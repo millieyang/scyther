@@ -103,6 +103,7 @@ var LoginPage = React.createClass({
 			success: function(user) {
 				this.validLogin = true;
 				console.log("YAY");
+				this.setState({isLoading: false});
 			},
 
 			error: function(error) {
@@ -116,7 +117,7 @@ var LoginPage = React.createClass({
 				message: "Invalid login; please try again."
 			});
 		}
-
+		
 		else {
 			this.setState({
 				isLoading: false,
@@ -127,6 +128,7 @@ var LoginPage = React.createClass({
 				component: Tasks
 			});
 		}
+
 	},
 
 	render: function() {
