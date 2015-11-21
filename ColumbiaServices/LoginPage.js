@@ -71,6 +71,18 @@ var LoginPage = React.createClass({
 	validLogin: false,
 	mixins: [ParseReact.Mixin],
 	getInitialState: function() {
+
+		Parse.User.signUp("bzprules", "afy2103",
+			{
+				success: function() {
+					console.log("signed up!");
+				}
+
+				error: function(error) {
+					console.log(error);
+				}
+			});
+
 		return {
 			isLoading: false,
 			message: ''
@@ -79,43 +91,9 @@ var LoginPage = React.createClass({
 
 	observe: function(props, state) {
 		return null;
-
-		/*
-		var loginQuery = (new Parse.Query('User'));
-		loginQuery.equalTo('username', this.username);
-		loginQuery.count({
-		  	success: function(count) {
-		  		if (count == 1) {
-					this.count = count;
-					console.log("YAY");
-		  		}
-
-		  		else if (count == 0) {
-					this.count = count;
-					console.log("NAY");
-		  		}
-
-		  		else {
-					this.count = count;
-					console.log("PRAY");
-		  		}
-		  	},
-
-		  	error: function(error) {
-				console.log("ERRAY");
-		  	}
-		});
-
-		console.log("bloopopopopopoppopo");
-		console.log(loginQuery);
-		return {login: loginQuery};
-		*/
 	},
 
 	componentDidUpdate: function(prevProps, prevState) {
-		console.log("Updating...");
-		console.log(prevState.isLoading);
-		console.log(this.validLogin);
 		if (prevState.isLoading && this.validLogin) {
 			this.setState({isLoading: false});
 		    this.props.navigator.push({
@@ -144,13 +122,6 @@ var LoginPage = React.createClass({
 				message: "Invalid login; please try again."
 			});
 		}
-		/*
-		console.log("bleepbelpbleplbpleblpelbpel");
-		console.log(this.data.login);
-		if (this.count == 0) {
-			console.log("WAHWAHWAH");
-		}
-		*/
 	},
 
 	render: function() {
