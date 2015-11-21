@@ -78,17 +78,18 @@ var LoginPage = React.createClass({
 	},
 
 	observe: function(props, state) {
-		var login = Parse.User.logIn(this.username, this.password, {
-			success: function(user) {
-				this.validLogin = true;
-				console.log("YAY");
-			},
+		if (state.isLoading) {
+			var login = Parse.User.logIn(this.username, this.password, {
+				success: function(user) {
+					this.validLogin = true;
+					console.log("YAY");
+				},
 
-			error: function(error) {
-				console.log(error);
-			}
-		});
-
+				error: function(error) {
+					console.log(error);
+				}
+			});
+		}
 		return null;
 
 		/*
@@ -139,10 +140,6 @@ var LoginPage = React.createClass({
 			this.setState({
 				isLoading: false,
 				message: "Invalid login; please try again."
-			});
-			this.props.navigator.push({
-				title: 'Login',
-				component: LoginPage
 			});
 		}
 	},
