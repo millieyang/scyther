@@ -111,6 +111,7 @@ var LoginPage = React.createClass({
 		}).then(
 			function() {
 				if (!this.validLogin) {
+					console.log("Failed login...");
 					this.setState({
 						isLoading: false,
 						message: "Invalid login; please try again."
