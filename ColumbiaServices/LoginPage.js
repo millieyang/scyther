@@ -71,8 +71,7 @@ var LoginPage = React.createClass({
 	validLogin: false,
 	mixins: [ParseReact.Mixin],
 	getInitialState: function() {
-
-		Parse.User.signUp("bzprules", "afy2103",
+		Parse.User.signUp("whoop", "afy2103",
 			{
 				success: function() {
 					console.log("signed up!");
