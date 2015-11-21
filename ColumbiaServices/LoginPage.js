@@ -96,6 +96,7 @@ var LoginPage = React.createClass({
 
 	onLoginPressed: function() {
 		this.setState({isLoading: true});
+		console.log("Logging in...");
 		var login = Parse.User.logIn(this.username, this.password, {
 			success: function(user) {
 				this.validLogin = true;
