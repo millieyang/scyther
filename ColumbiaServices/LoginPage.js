@@ -76,7 +76,7 @@ var LoginPage = React.createClass({
 			{
 				success: function() {
 					console.log("signed up!");
-				}
+				},
 
 				error: function(error) {
 					console.log(error);
