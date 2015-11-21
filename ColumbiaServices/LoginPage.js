@@ -120,7 +120,7 @@ var LoginPage = React.createClass({
 			this.setState({isLoading: false});
 		    this.props.navigator.push({
 		        title: 'Tasks',
-		        component: Tasks
+		        component: Tasks,
 		    });
 		}
 
@@ -128,6 +128,10 @@ var LoginPage = React.createClass({
 			this.setState({
 				isLoading: false,
 				message: "Invalid login; please try again."
+			});
+			this.props.navigator.replace({
+				title: 'Login',
+				component: LoginPage,
 			});
 		}
 	},
