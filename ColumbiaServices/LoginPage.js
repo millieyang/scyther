@@ -110,15 +110,7 @@ var LoginPage = React.createClass({
 			}
 		}).then(
 			function() {
-				if (!this.validLogin) {
-					console.log("Failed login...");
-					this.setState({
-						isLoading: false,
-						message: "Invalid login; please try again."
-					});
-				}
-				
-				else {
+				if (this.validLogin) {
 					this.setState({
 						isLoading: false,
 						message: ''
@@ -130,8 +122,12 @@ var LoginPage = React.createClass({
 					});
 				}
 			}.bind(this)
-
 		);
+
+		this.setState({
+			isLoading: false,
+			message: "Invalid login; please try again."
+		});
 	},
 
 	render: function() {
