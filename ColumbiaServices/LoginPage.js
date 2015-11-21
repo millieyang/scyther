@@ -123,17 +123,6 @@ var LoginPage = React.createClass({
 		        component: Tasks,
 		    });
 		}
-
-		else if (prevState.isLoading && !this.validLogin) {
-			this.setState({
-				isLoading: false,
-				message: "Invalid login; please try again."
-			});
-			this.props.navigator.replace({
-				title: 'Login',
-				component: LoginPage,
-			});
-		}
 	},
 
 	onLoginPressed: function() {
@@ -148,6 +137,13 @@ var LoginPage = React.createClass({
 				console.log(error);
 			}
 		});
+
+		if (!this.validLogin) {
+			this.setState({
+				isLoading: false,
+				message: "Invalid login; please try again."
+			});
+		}
 		/*
 		console.log("bleepbelpbleplbpleblpelbpel");
 		console.log(this.data.login);
