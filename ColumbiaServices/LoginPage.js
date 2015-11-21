@@ -71,17 +71,6 @@ var LoginPage = React.createClass({
 	validLogin: false,
 	mixins: [ParseReact.Mixin],
 	getInitialState: function() {
-		Parse.User.signUp("whoop", "afy2103",
-			{
-				success: function() {
-					console.log("signed up!");
-				},
-
-				error: function(error) {
-					console.log(error);
-				}
-			});
-
 		return {
 			isLoading: false,
 			message: ''
@@ -93,6 +82,9 @@ var LoginPage = React.createClass({
 	},
 
 	componentDidUpdate: function(prevProps, prevState) {
+		console.log("Updating...");
+		console.log(prevState.isLoading);
+		console.log(this.validLogin);
 		if (prevState.isLoading && this.validLogin) {
 			this.setState({isLoading: false});
 		    this.props.navigator.push({
