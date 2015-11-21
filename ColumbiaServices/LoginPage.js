@@ -103,8 +103,7 @@ var LoginPage = React.createClass({
 			success: function(user) {
 				this.validLogin = true;
 				console.log("YAY");
-				this.setState({isLoading: false});
-			},
+			}.bind(this),
 
 			error: function(error) {
 				console.log(error);
