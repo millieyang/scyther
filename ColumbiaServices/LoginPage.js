@@ -81,6 +81,7 @@ var LoginPage = React.createClass({
 		return null;
 	},
 
+	/*
 	componentDidUpdate: function(prevProps, prevState) {
 		console.log("Updating...");
 		console.log(prevState.isLoading);
@@ -93,6 +94,7 @@ var LoginPage = React.createClass({
 		    });
 		}
 	},
+	*/
 
 	onLoginPressed: function() {
 		this.setState({isLoading: true});
@@ -101,6 +103,14 @@ var LoginPage = React.createClass({
 			success: function(user) {
 				this.validLogin = true;
 				console.log("YAY");
+				this.setState({
+					isLoading: false,
+					message: ''
+				});
+				this.props.navigator.replace({
+					title: 'Tasks',
+					component: Tasks
+				});
 			},
 
 			error: function(error) {
