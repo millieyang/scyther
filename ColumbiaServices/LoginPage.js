@@ -2,7 +2,7 @@
 'use strict';
 
 var React = require('react-native');
-var TaskPage = require('TaskPage');
+var TaskPage = require('./TaskPage');
 var Parse = require('parse/react-native');
 var ParseReact = require('parse-react/react-native');
 var {
@@ -83,11 +83,9 @@ var LoginPage = React.createClass({
 		return null;
 	},
 
-	/*
 	componentDidUpdate: function(prevProps, prevState) {
 		console.log("Updating...");
 		console.log(prevState.isLoading);
-		console.log(this.validLogin);
 		if (prevState.isLoading && this.validLogin) {
 			this.setState({isLoading: false});
 		    this.props.navigator.push({
@@ -96,7 +94,6 @@ var LoginPage = React.createClass({
 		    });
 		}
 	},
-	*/
 
 	onLoginPressed: function() {
 		this.setState({isLoading: true});
@@ -118,10 +115,10 @@ var LoginPage = React.createClass({
 						message: ''
 					});
 
-					this.props.navigator.replace({
-						title: 'Tasks',
-						component: TaskPage
-					});
+					// this.props.navigator.replace({
+					// 	title: 'Tasks',
+					// 	component: TaskPage
+					// });
 				}
 			}.bind(this)
 		);

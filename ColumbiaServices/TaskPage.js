@@ -1,5 +1,5 @@
 'use strict';
-var Button = require('react-native-button');
+// var Button = require('react-native-button');
 var React = require('react-native');
 var Parse = require('parse/react-native');
 var ParseReact = require('parse-react/react-native');
@@ -72,7 +72,7 @@ var TaskPage = React.createClass({
 	mixins: [ParseReact.Mixin],
 	getInitialState: function() {
 		return {
-			isLoading: false,
+			isLoading: true,
 			message: ''
 		};
 	},
@@ -148,9 +148,10 @@ var TaskPage = React.createClass({
 
 		return (	
 			<View style={styles.container}>
-			<Text style={styles.reqName}>${task.name}</Text>
-			<Text style={styles.buttonText}>${task.reqPersonName}</Text>
-			<Text style={styles.buttonText}>${task.reqPersonContactNum}</Text>
+			<Text style={styles.description}>HELLO</text>
+			<Text style={styles.description}>${task.name}</Text>
+			<Text style={styles.description}>${task.reqPersonName}</Text>
+			<Text style={styles.description}>${task.reqPersonContactNum}</Text>
 			<Button
 			style={{fontSize: 20, color: 'green'}}
 			styleDisabled={{color: 'red'}}
