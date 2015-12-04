@@ -2,6 +2,7 @@
 
 var React = require('react-native');
 var LoginPage = require('./LoginPage');
+var RequestPage = require('./RequestPage');
 var Parse = require('parse/react-native');
 var ParseReact = require('parse-react/react-native');
 Parse.initialize(

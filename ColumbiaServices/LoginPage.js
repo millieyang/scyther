@@ -2,7 +2,7 @@
 'use strict';
 
 var React = require('react-native');
-var RequestPage = require('./RequestPage');
+var TaskPage = require('./TaskPage');
 var Parse = require('parse/react-native');
 var ParseReact = require('parse-react/react-native');
 var {
@@ -120,7 +120,7 @@ var LoginPage = React.createClass({
 
 					this.props.navigator.replace({
 						title: 'Tasks',
-						component: Tasks
+						component: TaskPage
 					});
 				}
 			}.bind(this)

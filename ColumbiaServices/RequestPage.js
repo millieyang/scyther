@@ -65,7 +65,7 @@ var styles = StyleSheet.create({
 });
 
 
-var RequestPage = React.createClass({
+var TaskPage = React.createClass({
 	// username: '',
 	// password: '',
 	// validLogin: false,
@@ -148,9 +148,9 @@ var RequestPage = React.createClass({
 
 		return (	
 			<View style={styles.container}>
-			<Text style={styles.reqName}>${request.name}</Text>
-			<Text style={styles.buttonText}>${request.reqPersonName}</Text>
-			<Text style={styles.buttonText}>${request.reqPersonContactNum}</Text>
+			<Text style={styles.reqName}>${task.name}</Text>
+			<Text style={styles.buttonText}>${task.reqPersonName}</Text>
+			<Text style={styles.buttonText}>${task.reqPersonContactNum}</Text>
 			<Button
 			style={{fontSize: 20, color: 'green'}}
 			styleDisabled={{color: 'red'}}
@@ -162,4 +162,4 @@ var RequestPage = React.createClass({
 	}
 });
 
-module.exports = RequestPage;
+module.exports = TaskPage;
