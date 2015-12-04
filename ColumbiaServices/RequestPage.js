@@ -144,12 +144,13 @@ var RequestPage = React.createClass({
 			hidden='true'
 			size='large'/>):
 		(<View/>);
+		var request = this.props.property;
 
 		return (	
 			<View style={styles.container}>
 			<Text style={styles.reqName}>${request.name}</Text>
-			<Text style={styles.price}>${request.reqPersonName}</Text>
-			<Text style={styles.price}>${request.reqPersonContactNum}</Text>
+			<Text style={styles.buttonText}>${request.reqPersonName}</Text>
+			<Text style={styles.buttonText}>${request.reqPersonContactNum}</Text>
 			<Button
 			style={{fontSize: 20, color: 'green'}}
 			styleDisabled={{color: 'red'}}
