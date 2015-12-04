@@ -69,84 +69,70 @@ var styles = StyleSheet.create({
 var LoginPage = React.createClass({
 	username: '',
 	password: '',
+	validLogin: false,
 	mixins: [ParseReact.Mixin],
 	getInitialState: function() {
 		return {
 			isLoading: false,
-			validLogin: false,
 			message: ''
 		};
 	},
 
 	observe: function(props, state) {
-		var loginQuery = (new Parse.Query('User'));
-		loginQuery.equalTo('username', this.username);
-		loginQuery.equalTo('password', this.password);
-		loginQuery.count({
-		  	success: function(count) {
-		  		if (count == 1) {
-		  			/*
-		  			this.setState({
-		  				isLoading: false, 
-		  				validLogin: true
-		  			});
-					*/
-					console.log("YAY");
-		  		}
-
-		  		else if (count == 0) {
-		  			/*
-		  			this.setState({
-		  				isLoading: false,
-		  				message: 'Invalid login. Please try again!'
-		  			});
-					*/
-					console.log("NAY");
-		  		}
-
-		  		else {
-		  			/*
-		  			this.setState({
-		  				isLoading: false,
-		  				message: 'Something is wrong with our database. Please contact us if you see this message!'
-		  			});
-					*/
-					console.log("PRAY");
-		  		}
-		  	},
-
-		  	error: function(error) {
-		  		/*
-		  		this.setState({
-		  			isLoading: false,
-		  			message: 'There was a problem looking up your login: ' + error
-		  		});
-				*/
-				console.log("ERRAY");
-		  	}
-		});
-
-		console.log("bloopopopopopoppopo");
-		console.log(loginQuery);
-		return {login: loginQuery};
+		return null;
 	},
+
+	/*
+	componentDidUpdate: function(prevProps, prevState) {
+		console.log("Updating...");
+		console.log(prevState.isLoading);
+		console.log(this.validLogin);
+		if (prevState.isLoading && this.validLogin) {
+			this.setState({isLoading: false});
+		    this.props.navigator.push({
+		        title: 'Tasks',
+		        component: Tasks,
+		    });
+		}
+	},
+	*/
 
 	onLoginPressed: function() {
-		this._executeQuery();
-	},
+		this.setState({isLoading: true});
+		console.log("Logging in...");
+		Parse.User.logIn(this.username, this.password, {
+			success: function(user) {
+				this.validLogin = true;
+				console.log("YAY");
+			}.bind(this),
 
-	_executeQuery: function() {
-		this.setState({ isLoading: true });
-		console.log("bleepbelpbleplbpleblpelbpel");
-		console.log(this.data.login);
-		this._handleQuery(this.data.login);
-	},
+			error: function(error) {
+				console.log(error);
+			}
+		}).then(
+			function() {
+				if (this.validLogin) {
+					this.setState({
+						isLoading: false,
+						message: ''
+					});
 
-	_handleQuery: function(loginQuery) {
+					this.props.navigator.replace({
+						title: 'Tasks',
+						component: Tasks
+					});
+				}
+			}.bind(this)
+		);
 
+		this.setState({
+			isLoading: false,
+			message: "Invalid login; please try again."
+		});
 	},
 
 	render: function() {
+		console.log("Rendering...");
 		var spinner = this.state.isLoading ?
 			(<ActivityIndicatorIOS
 				hidden='true'
