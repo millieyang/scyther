@@ -1,5 +1,5 @@
 'use strict';
-// var Button = require('react-native-button');
+
 var React = require('react-native');
 var Parse = require('parse/react-native');
 var TaskView = require('./TaskView');

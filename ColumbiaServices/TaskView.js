@@ -1,5 +1,5 @@
 'use strict';
-
+var Button = require('react-native-button');
 var React = require('react-native');
 var {
   StyleSheet,
@@ -54,6 +54,9 @@ var TaskView = React.createClass({
         <Text style={styles.title}>{task.reqPersonName}</Text>
         <Text style={styles.title}>{task.reqPersonContactNumber}</Text>
         <Text style={styles.description}>{task.summary}</Text>
+        <Button style={{fontSize: 20, color: 'green'}} styleDisabled={{color: 'red'}} onPress={this._handlePress}>
+        Accept
+        </Button>
       </View>
     );
   }
