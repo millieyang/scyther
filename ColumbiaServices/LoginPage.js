@@ -2,7 +2,7 @@
 'use strict';
 
 var React = require('react-native');
-var TaskPage = require('./TaskPage');
+var TaskPage = require('TaskPage');
 var Parse = require('parse/react-native');
 var ParseReact = require('parse-react/react-native');
 var {
