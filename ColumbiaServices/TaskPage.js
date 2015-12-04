@@ -79,11 +79,15 @@ var TaskPage = React.createClass({
 	// 		message: ''
 	// 	};
 	// },
+
+	observe: function(props, state) {
+		return null;
+	},
 	getInitialState: function() {
     var dataSource = new ListView.DataSource(
       {rowHasChanged: (r1, r2) => r1.id !== r2.id});
     return {
-      dataSource: dataSource.cloneWithRows(this.props.task)
+      dataSource: dataSource.cloneWithRows(['hi'])
     };
   },
 
