@@ -10,6 +10,7 @@ var {
 	TextInput,
 	View,
 	TouchableHighlight,
+	ListView,
 	ActivityIndicatorIOS,
 	Image,
 } = React;
@@ -87,8 +88,17 @@ var TaskPage = React.createClass({
   },
 
     rowPressed: function(taskid) {
+    console.log("hereee");
     var property = this.props.task
       .filter(prop => prop.id === taskid)[0];
+
+    console.log("Here");
+    console.log({task:task});
+    this.props.navigator.push({
+      title: "Task",
+      component: TaskView,
+      passProps: {task: task}
+    });
   },
 	// observe: function(props, state) {
 	// 	return null;
@@ -154,16 +164,16 @@ var TaskPage = React.createClass({
 			<TouchableHighlight onPress={() => this.rowPressed(rowData.id)}
 			underlayColor='#dddddd'>
 			<View>
-			<View style={styles.rowContainer}>
-			<Text style={styles.description}>HELLO</Text>
-			<Text style={styles.description}>${rowData.name}</Text>
-			<Text style={styles.description}>${rowData.reqPersonName}</Text>
-			<Text style={styles.description}>${rowData.reqPersonContactNum}</Text>
-			<Text style={styles.title}
-			numberOfLines={1}>{rowData.title}</Text>
+				<View style={styles.rowContainer}>
+					<Text style={styles.description}>HELLO</Text>
+					<Text style={styles.description}>${rowData.name}</Text>
+					<Text style={styles.description}>${rowData.reqPersonName}</Text>
+					<Text style={styles.description}>${rowData.reqPersonContactNum}</Text>
+					<Text style={styles.title} numberOfLines={1}>{rowData.title}</Text>
+				</View>
 			</View>
-			</View>
-			<View style={styles.separator}/>
+			<View>
+				<View style={styles.separator}/>
 			</View>
 			</TouchableHighlight>
 			);
