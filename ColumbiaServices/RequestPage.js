@@ -1,8 +1,6 @@
-
 'use strict';
-
+var Button = require('react-native-button');
 var React = require('react-native');
-var RequestPage = require('./RequestPage');
 var Parse = require('parse/react-native');
 var ParseReact = require('parse-react/react-native');
 var {
@@ -67,10 +65,10 @@ var styles = StyleSheet.create({
 });
 
 
-var LoginPage = React.createClass({
-	username: '',
-	password: '',
-	validLogin: false,
+var RequestPage = React.createClass({
+	// username: '',
+	// password: '',
+	// validLogin: false,
 	mixins: [ParseReact.Mixin],
 	getInitialState: function() {
 		return {
@@ -82,6 +80,11 @@ var LoginPage = React.createClass({
 	observe: function(props, state) {
 		return null;
 	},
+
+	_handlePress(event) {
+		console.log('Clicked accept!');
+	},
+
 
 	/*
 	componentDidUpdate: function(prevProps, prevState) {
@@ -98,77 +101,64 @@ var LoginPage = React.createClass({
 	},
 	*/
 
-	onLoginPressed: function() {
-		this.setState({isLoading: true});
-		console.log("Logging in...");
-		Parse.User.logIn(this.username, this.password, {
-			success: function(user) {
-				this.validLogin = true;
-				console.log("YAY");
-			}.bind(this),
+	// onLoginPressed: function() {
+	// 	this.setState({isLoading: true});
+	// 	console.log("Logging in...");
+	// 	Parse.User.logIn(this.username, this.password, {
+	// 		success: function(user) {
+	// 			this.validLogin = true;
+	// 			console.log("YAY");
+	// 		}.bind(this),
 
-			error: function(error) {
-				console.log(error);
-			}
-		}).then(
-			function() {
-				if (this.validLogin) {
-					this.setState({
-						isLoading: false,
-						message: ''
-					});
+	// 		error: function(error) {
+	// 			console.log(error);
+	// 		}
+	// 	}).then(
+	// 	function() {
+	// 		if (this.validLogin) {
+	// 			this.setState({
+	// 				isLoading: false,
+	// 				message: ''
+	// 			});
 
-					this.props.navigator.replace({
-						title: 'Tasks',
-						component: Tasks
-					});
-				}
-			}.bind(this)
-		);
+	// 			this.props.navigator.replace({
+	// 				title: 'Tasks',
+	// 				component: Tasks
+	// 			});
+	// 		}
+	// 	}.bind(this)
+	// 	);
 
-		this.setState({
-			isLoading: false,
-			message: "Invalid login; please try again."
-		});
-	},
+	// 	this.setState({
+	// 		isLoading: false,
+	// 		message: "Invalid login; please try again."
+	// 	});
+	// },
+
+
 
 	render: function() {
 		console.log("Rendering...");
 		var spinner = this.state.isLoading ?
-			(<ActivityIndicatorIOS
-				hidden='true'
-				size='large'/>):
-			(<View/>);
+		(<ActivityIndicatorIOS
+			hidden='true'
+			size='large'/>):
+		(<View/>);
 
 		return (	
 			<View style={styles.container}>
-				<View style={styles.flowRight}>
-					<TextInput
-						style={styles.loginField}
-						placeholder='Username'
-						onChangeText={(text) => this.username = text}/>
-				</View>
-
-				<View style={styles.flowRight}>
-					<TextInput
-						style={styles.loginField}
-						placeholder='Password'
-						onChangeText={(text) => this.password = text}
-						secureTextEntry/>
-				</View>
-				
-				<TouchableHighlight style={styles.button}
-					onPress={this.onLoginPressed}
-					underlayColor='#99d9f4'>
-					<Text style={styles.buttonText}>Login</Text>
-				</TouchableHighlight>
-
-				{spinner}
-		        <Text style={styles.description}>{this.state.message}</Text>
-
+			<Text style={styles.reqName}>${request.name}</Text>
+			<Text style={styles.price}>${request.reqPersonName}</Text>
+			<Text style={styles.price}>${request.reqPersonContactNum}</Text>
+			<Button
+			style={{fontSize: 20, color: 'green'}}
+			styleDisabled={{color: 'red'}}
+			onPress={this._handlePress}>
+			Accept
+			</Button>
 			</View>
-		);
+			);
 	}
 });
 
-module.exports = LoginPage;
+module.exports = RequestPage;
