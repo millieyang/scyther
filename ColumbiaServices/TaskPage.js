@@ -148,7 +148,7 @@ var TaskPage = React.createClass({
 
 		return (	
 			<View style={styles.container}>
-			<Text style={styles.description}>HELLO</text>
+			<Text style={styles.description}>HELLO</Text>
 			<Text style={styles.description}>${task.name}</Text>
 			<Text style={styles.description}>${task.reqPersonName}</Text>
 			<Text style={styles.description}>${task.reqPersonContactNum}</Text>
