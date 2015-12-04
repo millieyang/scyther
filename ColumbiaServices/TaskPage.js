@@ -2,6 +2,7 @@
 // var Button = require('react-native-button');
 var React = require('react-native');
 var Parse = require('parse/react-native');
+var TaskView = require('./TaskView');
 var ParseReact = require('parse-react/react-native');
 var {
 	StyleSheet,
@@ -69,17 +70,29 @@ var TaskPage = React.createClass({
 	// username: '',
 	// password: '',
 	// validLogin: false,
+	//need to not load user who is using the app
 	mixins: [ParseReact.Mixin],
+	// getInitialState: function() {
+	// 	return {
+	// 		isLoading: true,
+	// 		message: ''
+	// 	};
+	// },
 	getInitialState: function() {
-		return {
-			isLoading: true,
-			message: ''
-		};
-	},
+    var dataSource = new ListView.DataSource(
+      {rowHasChanged: (r1, r2) => r1.id !== r2.id});
+    return {
+      dataSource: dataSource.cloneWithRows(this.props.task)
+    };
+  },
 
-	observe: function(props, state) {
-		return null;
-	},
+    rowPressed: function(taskid) {
+    var property = this.props.task
+      .filter(prop => prop.id === taskid)[0];
+  },
+	// observe: function(props, state) {
+	// 	return null;
+	// },
 
 	_handlePress(event) {
 		console.log('Clicked accept!');
@@ -136,31 +149,54 @@ var TaskPage = React.createClass({
 	// },
 
 
+	renderRow: function(rowData, sectionID, rowID) {
+		return (
+			<TouchableHighlight onPress={() => this.rowPressed(rowData.id)}
+			underlayColor='#dddddd'>
+			<View>
+			<View style={styles.rowContainer}>
+			<Text style={styles.description}>HELLO</Text>
+			<Text style={styles.description}>${rowData.name}</Text>
+			<Text style={styles.description}>${rowData.reqPersonName}</Text>
+			<Text style={styles.description}>${rowData.reqPersonContactNum}</Text>
+			<Text style={styles.title}
+			numberOfLines={1}>{rowData.title}</Text>
+			</View>
+			</View>
+			<View style={styles.separator}/>
+			</View>
+			</TouchableHighlight>
+			);
+	},
+
+	// render: function() {
+	// 	console.log("Rendering...");
+	// 	var spinner = this.state.isLoading ?
+	// 	(<ActivityIndicatorIOS
+	// 		hidden='true'
+	// 		size='large'/>):
+	// 	(<View/>);
+	// 	var request = this.props.property;
+
+	// 	return (	
+	// 		<View style={styles.container}>
+	// 		<Button
+	// 		style={{fontSize: 20, color: 'green'}}
+	// 		styleDisabled={{color: 'red'}}
+	// 		onPress={this._handlePress}>
+	// 		Accept
+	// 		</Button>
+	// 		</View>
+	// 		);
+	// }
 
 	render: function() {
-		console.log("Rendering...");
-		var spinner = this.state.isLoading ?
-		(<ActivityIndicatorIOS
-			hidden='true'
-			size='large'/>):
-		(<View/>);
-		var request = this.props.property;
-
-		return (	
-			<View style={styles.container}>
-			<Text style={styles.description}>HELLO</Text>
-			<Text style={styles.description}>${task.name}</Text>
-			<Text style={styles.description}>${task.reqPersonName}</Text>
-			<Text style={styles.description}>${task.reqPersonContactNum}</Text>
-			<Button
-			style={{fontSize: 20, color: 'green'}}
-			styleDisabled={{color: 'red'}}
-			onPress={this._handlePress}>
-			Accept
-			</Button>
-			</View>
-			);
-	}
+    return (
+      <ListView
+        dataSource={this.state.dataSource}
+        renderRow={this.renderRow}/>
+    );
+  }
 });
 
 module.exports = TaskPage;

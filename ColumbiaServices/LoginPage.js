@@ -115,10 +115,10 @@ var LoginPage = React.createClass({
 						message: ''
 					});
 
-					// this.props.navigator.replace({
-					// 	title: 'Tasks',
-					// 	component: TaskPage
-					// });
+					this.props.navigator.replace({
+						title: 'Tasks',
+						component: TaskPage
+					});
 				}
 			}.bind(this)
 		);
